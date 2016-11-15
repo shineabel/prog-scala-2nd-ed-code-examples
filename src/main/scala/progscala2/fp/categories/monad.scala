@@ -2,15 +2,15 @@
 package progscala2.fp.categories
 import scala.language.higherKinds
 
-trait Monad[M[_]] {                                                // <1>
-  def flatMap[A, B](fa: M[A])(f: A => M[B]): M[B]                  // <2>
-  def unit[A](a: => A): M[A]                                       // <3>
+trait Monad[M[_]] { // <1>
+  def flatMap[A, B](fa: M[A])(f: A => M[B]): M[B] // <2>
+  def unit[A](a: => A): M[A] // <3>
 
   // Some common aliases:                                             <4>
-  def bind[A,B](fa: M[A])(f: A => M[B]): M[B] = flatMap(fa)(f)
-  def >>=[A,B](fa: M[A])(f: A => M[B]): M[B] = flatMap(fa)(f)
+  def bind[A, B](fa: M[A])(f: A => M[B]): M[B] = flatMap(fa)(f)
+  def >>=[A, B](fa: M[A])(f: A => M[B]): M[B] = flatMap(fa)(f)
   def pure[A](a: => A): M[A] = unit(a)
-  def `return`[A](a: => A): M[A] = unit(a)    // backticks to avoid keyword
+  def `return`[A](a: => A): M[A] = unit(a) // backticks to avoid keyword
 }
 
 object SeqM extends Monad[Seq] {
@@ -19,7 +19,7 @@ object SeqM extends Monad[Seq] {
 }
 
 object OptionM extends Monad[Option] {
-  def flatMap[A, B](opt: Option[A])(f: A => Option[B]):Option[B]= opt flatMap f
+  def flatMap[A, B](opt: Option[A])(f: A => Option[B]): Option[B] = opt flatMap f
   def unit[A](a: => A): Option[A] = Option(a)
 }
 

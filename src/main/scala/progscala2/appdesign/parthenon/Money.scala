@@ -8,11 +8,11 @@ package progscala2.appdesign.parthenon
 case class Money(amount: Double) {
   require(amount >= 0.0, s"Negative amount $amount not allowed")
 
-  def +  (m: Money): Money = Money(amount + m.amount)
-  def -  (m: Money): Money = Money(amount - m.amount)
-  def >= (m: Money): Boolean = amount >= m.amount
+  def +(m: Money): Money = Money(amount + m.amount)
+  def -(m: Money): Money = Money(amount - m.amount)
+  def >=(m: Money): Boolean = amount >= m.amount
 
-  override def toString = "$"+amount
+  override def toString = "$" + amount
 }
 
 case object Money {

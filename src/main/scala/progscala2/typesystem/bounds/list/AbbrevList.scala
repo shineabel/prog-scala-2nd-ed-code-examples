@@ -8,7 +8,7 @@ sealed abstract class AbbrevList[+A] {
   def head: A
   def tail: AbbrevList[A]
 
-  def ::[B >: A] (x: B): AbbrevList[B] =
+  def ::[B >: A](x: B): AbbrevList[B] =
     new progscala2.typesystem.bounds.list.::(x, this)
 
   final def foreach(f: A => Unit) = {
@@ -35,9 +35,9 @@ case object AbbrevNil extends AbbrevList[Nothing] {
 // A non-empty AbbrevList characterized by a head and a tail.
 
 final case class ::[B](private var hd: B,
-    private[list] var tl: AbbrevList[B]) extends AbbrevList[B] {
+                       private[list] var tl: AbbrevList[B]) extends AbbrevList[B] {
 
   override def isEmpty: Boolean = false
-  def head : B = hd
-  def tail : AbbrevList[B] = tl
+  def head: B = hd
+  def tail: AbbrevList[B] = tl
 }

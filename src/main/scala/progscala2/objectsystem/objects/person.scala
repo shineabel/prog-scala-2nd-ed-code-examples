@@ -13,7 +13,7 @@ object Person {
     // Test the constructor...
     val person = new Person("Buck Trends", 21)
     assert(person.name == "Buck Trends")
-    assert(person.age  == 21)
+    assert(person.age == 21)
   }
 }
 

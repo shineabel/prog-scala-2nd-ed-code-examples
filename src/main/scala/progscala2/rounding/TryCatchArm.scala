@@ -7,11 +7,11 @@ import scala.util.control.NonFatal
 // example below to more clearly indicate the handling of the returned
 // object of type T.
 object manage {
-  def apply[R <: { def close():Unit }, T](resource: => R)(f: R => T): T = {
+  def apply[R <: { def close(): Unit }, T](resource: => R)(f: R => T): T = {
     var res: Option[R] = None
     try {
-      res = Some(resource)         // Only reference "resource" once!!
-      f(res.get)                   // Return the T instance
+      res = Some(resource) // Only reference "resource" once!!
+      f(res.get) // Return the T instance
     } catch {
       case NonFatal(ex) =>
         println(s"manage.apply(): Non fatal exception! $ex")
@@ -35,7 +35,7 @@ object TryCatchARM {
   import scala.io.Source
 
   def returnFileLength(fileName: String): Int = {
-    println()  // Add a blank line for legibility
+    println() // Add a blank line for legibility
     manage(Source.fromFile(fileName)) { source =>
       val size = source.getLines.size
       println(s"file $fileName has $size lines")

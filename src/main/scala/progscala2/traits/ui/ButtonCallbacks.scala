@@ -2,7 +2,7 @@
 package progscala2.traits.ui
 
 class ButtonWithCallbacks(val label: String,
-    val callbacks: List[() => Unit] = Nil) extends Widget {
+                          val callbacks: List[() => Unit] = Nil) extends Widget {
 
   def click(): Unit = {
     updateUI()

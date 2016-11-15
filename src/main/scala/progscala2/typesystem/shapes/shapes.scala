@@ -13,12 +13,12 @@ package progscala2.typesystem.shapes {
   }
 
   case class Rectangle(lowerLeft: Point, height: Double, width: Double)
-        extends Shape {
+      extends Shape {
     def draw() = println("Rectangle.draw: " + this)
   }
 
   case class Triangle(point1: Point, point2: Point, point3: Point)
-        extends Shape() {
+      extends Shape() {
     def draw() = println("Triangle.draw: " + this)
   }
 }

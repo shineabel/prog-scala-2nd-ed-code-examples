@@ -1,11 +1,11 @@
 // src/main/scala/progscala2/typesystem/selftype/ButtonSubjectObserver.scala
 package progscala2.typesystem.selftype
 
-case class Button(label: String) {                                   // <1>
+case class Button(label: String) { // <1>
   def click(): Unit = {}
 }
 
-object ButtonSubjectObserver extends SubjectObserver {               // <2>
+object ButtonSubjectObserver extends SubjectObserver { // <2>
   type S = ObservableButton
   type O = ButtonObserver
 
@@ -23,8 +23,8 @@ object ButtonSubjectObserver extends SubjectObserver {               // <2>
 
 import ButtonSubjectObserver._
 
-class ButtonClickObserver extends ButtonObserver {                   // <3>
- val clicks = new scala.collection.mutable.HashMap[String,Int]()
+class ButtonClickObserver extends ButtonObserver { // <3>
+  val clicks = new scala.collection.mutable.HashMap[String, Int]()
 
   def receiveUpdate(button: ObservableButton) = {
     val count = clicks.getOrElse(button.label, 0) + 1

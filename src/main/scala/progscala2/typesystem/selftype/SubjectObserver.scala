@@ -6,7 +6,7 @@ abstract class SubjectObserver {
   type O <: Observer
 
   trait Subject {
-    self: S =>                                                       // <1>
+    self: S => // <1>
     private var observers = List[O]()
 
     def addObserver(observer: O) = observers ::= observer

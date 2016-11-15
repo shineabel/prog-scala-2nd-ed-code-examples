@@ -2,20 +2,20 @@
 
 // A Scala wrapper for the Java-like Database API.
 package progscala2.implicits {
-    package scaladb {
+  package scaladb {
     object implicits {
       import javadb.JRow
-      
+
       implicit class SRow(jrow: JRow) {
-        def get[T](colName: String)(implicit toT: (JRow,String) => T): T =
+        def get[T](colName: String)(implicit toT: (JRow, String) => T): T =
           toT(jrow, colName)
       }
 
-      implicit val jrowToInt: (JRow,String) => Int = 
+      implicit val jrowToInt: (JRow, String) => Int =
         (jrow: JRow, colName: String) => jrow.getInt(colName)
-      implicit val jrowToDouble: (JRow,String) => Double = 
+      implicit val jrowToDouble: (JRow, String) => Double =
         (jrow: JRow, colName: String) => jrow.getDouble(colName)
-      implicit val jrowToString: (JRow,String) => String = 
+      implicit val jrowToString: (JRow, String) => String =
         (jrow: JRow, colName: String) => jrow.getText(colName)
     }
 
@@ -25,8 +25,8 @@ package progscala2.implicits {
       def main(args: Array[String]) = {
         val row = javadb.JRow("one" -> 1, "two" -> 2.2, "three" -> "THREE!")
 
-        val oneValue1: Int      = row.get("one")
-        val twoValue1: Double   = row.get("two")
+        val oneValue1: Int = row.get("one")
+        val twoValue1: Double = row.get("two")
         val threeValue1: String = row.get("three")
         // val fourValue1: Byte    = row.get("four")  // won't compile
 
@@ -34,8 +34,8 @@ package progscala2.implicits {
         println(s"two1   -> $twoValue1")
         println(s"three1 -> $threeValue1")
 
-        val oneValue2   = row.get[Int]("one")
-        val twoValue2   = row.get[Double]("two")
+        val oneValue2 = row.get[Int]("one")
+        val twoValue2 = row.get[Double]("two")
         val threeValue2 = row.get[String]("three")
         // val fourValue2    = row.get[Byte]("four")  // won't compile
 
